@@ -1,4 +1,4 @@
-// Opdracht 1 t/m 6. [Klikken op "SEARCH"-knop geeft output voor 1 t/m 6.]
+// Opdracht 1 t/m 7. [Klikken op "SEARCH"-knop geeft output voor 1 t/m 7.]
 // Opdracht 1
 // Maak een 'Zoek'-knop op de pagina en koppel deze aan een functie die de gegevens over België ophaalt
 // en dit in de console logt. Tip: Als de de documentatie bekijkt en op async zoekt,
@@ -25,7 +25,7 @@
 // 1.4 Make the request with axios + await
 
 // To check for other countries (assignment 5) use variable string:
-// const countryName = 'belgium';
+const countryName = 'belgium';
 
 // Opdracht 5.
 // Check of alles nog steeds werkt als je de gegevens over Aruba of Duitsland ophaalt!
@@ -33,30 +33,60 @@
 // const countryName = 'aruba';
 
 // Duitsland: uncomment line 36 and comment line 28
-const countryName = 'germany';
+// const countryName = 'germany';
 
 async function fetchDataBelgium() {
     try {
         const response = await axios.get(`https://restcountries.eu/rest/v2/name/${countryName}`);
         console.log(response.data[0]);
 
+        const countryDetails  = response.data[0];
+
         // 2.1 Look for the correct variable names:
         // [country-naam] -> "name"
         // [subarea-name] -> "subregion"
         // [amount] -> "population"
-        console.log(`${response.data[0].name} is situated in ${response.data[0].subregion}.\n\r` +
-            `It has a population of ${response.data[0].population} people.`);
+        console.log(`${countryDetails.name} is situated in ${countryDetails.subregion}.\n\r` +
+            `It has a population of ${countryDetails.population} people.`);
 
         // 3.1 Look for the correct variable name:
         // [city] -> "capital"
-        console.log(`The capital is ${response.data[0].capital} ` +
+        console.log(`The capital is ${countryDetails.capital} ` +
 
             // 4.2 Look for the correct variable name:
             // [currency] -> "currencies"
-            `${countryCurrencies(response.data[0].currencies)}`);
+            `${countryCurrencies(countryDetails.currencies)}`);
 
         // 6. test for "bonus-assignment" with function countryCurrencies
-        console.log(countryLanguages(response.data[0].languages));
+        console.log(countryLanguages(countryDetails.languages));
+
+        // 7. test for country flag website
+        console.log(countryDetails.flag);
+
+        // Put flag in the document (test)
+        document.getElementById("country-flag").src = countryDetails.flag;
+        // Make the ancors for the different texts
+        const countryNameContainer = document.getElementById('country-name');
+        const countrySituationContainer = document.getElementById('country-situation');
+        const countryCapitalContainer = document.getElementById('country-capital');
+        const countryLanguagesContainer = document.getElementById('country-languages');
+        // Make the HTML elements
+        const countryNameElement = document.createElement('h1');
+        const countrySituationElement = document.createElement('h3');
+        const countryCapitalElement = document.createElement('h3');
+        const countryLanguagesElement = document.createElement('h3');
+        //  put data in the elements
+        countryNameElement.textContent = countryDetails.name;
+        countrySituationElement.textContent = `${countryDetails.name} is situated in ${countryDetails.subregion}.\n\r` +
+            `It has a population of ${countryDetails.population} people.`;
+        countryCapitalElement.textContent = `The capital is ${countryDetails.capital} ` +
+            `${countryCurrencies(countryDetails.currencies)}`;
+        countryLanguagesElement.textContent = countryLanguages(countryDetails.languages);
+        // Add the elements to the ancors
+        countryNameContainer.appendChild(countryNameElement);
+        countrySituationContainer.appendChild(countrySituationElement);
+        countryCapitalContainer.appendChild(countryCapitalElement);
+        countryLanguagesContainer.appendChild(countryLanguagesElement);
 
     } catch (e) {
         console.error(e);
@@ -115,11 +145,32 @@ function countryLanguages(array) {
 // Maak een inputveld op de pagina en zorg ervoor dat als de gebruiker op enter drukt, de functie wordt aangeroepen
 // waarmee de gegevens over België worden opgehaald.
 
+// already  made a SEARCH button to activate the function "fetchDataBelgium" see 1.5 and 1.8
+// now we make an input text field
+const inputElement = document.getElementById('data-fetch-field');
+
+
+function handleInput(event) {
+    console.log(event.target.value);
+}
+
+let typedText = '';
+inputElement.addEventListener('keyup', (event) => {
+    handleInput(event);
+    if (event.key === 'Enter') {
+        // check typed text after an Enter
+        typedText = event.target.value;
+        console.log(`typed text: ${typedText}`);
+        fetchDataBelgium();
+    }
+});
 
 // Opdracht 9.
 // Zorg ervoor dat de waarde uit het input veld wordt gebruikt als query voor het GET request.
 // Er moet alleen een request gedaan worden als de gebruiker op enter drukt, of op de zoek-knop klikt.
 // Tip: gebruik een globale variabele.
+
+
 
 
 // Opdracht 10.
