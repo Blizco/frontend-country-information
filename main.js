@@ -102,17 +102,6 @@ function countryLanguages(array) {
     return text;
 }
 
-// function valuta2 (array) {
-//     let text = "And you can pay with ";
-//     for (let i=0; i < array.length; i++) {
-//         text = text + array[i].name;
-//         if (i < array.length - 1) {
-//             text = text + " and ";
-//         }
-//     }
-//     return text;
-// }
-
 // Opdracht 7
 // Zorg ervoor dat de opgehaalde data op de volgende manier wordt toegevoegd aan de DOM:
 //  - [IMAGE: flag]
@@ -152,74 +141,3 @@ function countryLanguages(array) {
 
 // Opdracht 14.
 // Bonusopdracht: make it look nice! 😍
-
-
-// async function searchBelgium() {
-//     const apiURL = "https://restcountries.eu/rest/v2/name/belgium"
-//     try {
-//         const response = await axios.get(apiURL)
-//         console.log(response)
-//         return response.data[0]
-//     } catch (error) {
-//         console.log(error)
-//     }
-//
-// }
-// //2 Maak op basis van de response de volgende string en log dit in de console: [country-naam] is situated in [subarea-name].
-// // It has a population of [amount] people.
-// async function searchCountryNameSubPop(userInput) {
-//     const apiURL = "https://restcountries.eu/rest/v2/name/"
-//     try {
-//         const response = await axios.get(apiURL + userInput )
-//         console.log(response)
-//         return response.data[0]
-//
-//     } catch (error) {
-//         console.log(error)
-//     }
-//
-// }
-//
-//
-// window.onload = function () {
-//     document.getElementById("search").addEventListener('click', async event => {
-//         console.log("klicked")
-//         let {value} = document.getElementById('query')
-//         if( value === ""){
-//             value = "belgium"
-//         }
-//         console.log("search query", value)
-//         const countryDetails = await searchCountryNameSubPop(value)
-//         console.log(countryDetails)
-//         console.log(countryDetails.name + " is situated in " + countryDetails.subregion + " It has a population of" + countryDetails.population + " people")
-//         console.log("The capital is " + countryDetails.capital)
-//
-//         for (let i = 0; i < countryDetails.currencies.length; i++) {
-//             console.log(countryDetails.currencies[i].name)
-//
-//
-//         }
-//         const currencies = valuta2(countryDetails.currencies);
-//         console.log(currencies);
-//         document.getElementById("text").innerHTML = countryDetails.name + " is situated in " + countryDetails.subregion + ".<br>It has a population of " + countryDetails.population + " people.<br>" + "The capital is " + countryDetails.capital + "<br>" + currencies
-//
-//     })
-// }
-//
-// function valuta (array) {
-//     // return array
-//     if (array.length === 1 ) {
-//         return "and you can pay with " + array[0].name;
-//     } else return "and you can pay with " + array[0].name + " and " + array[1].name;
-// }
-//
-// function valuta2 (array) {
-//     let text = "And you can pay with ";
-//     for (let i=0; i < array.length; i++) {
-//         text = text + array[i].name;
-//         if (i < array.length - 1) {
-//             text = text + " and ";
-//         }
-//     }
-//     return text;
-// }
