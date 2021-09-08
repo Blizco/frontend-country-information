@@ -1,0 +1,15 @@
+
+
+body {
+    display: block;
+    margin: 30px;
+    /*display: flex;*/
+    justify-content: center;
+}
+
+
+#country-flag {
+    /*display: inline-block;*/
+    border: 1px solid gray;
+    padding: 20px;
+}
